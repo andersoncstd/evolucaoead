@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
+import pyarrow.parquet as pq
+
 
 st.set_page_config(
     page_title="Censo da Educação Superior",
@@ -119,7 +121,7 @@ def carregar_dados():
         )
         st.stop()
 
-    colunas_disponiveis = pd.read_parquet(caminho, engine="pyarrow").columns.tolist()
+    colunas_disponiveis = pq.ParquetFile(caminho).schema.names
     colunas_para_ler = [col for col in COLUNAS_BASE if col in colunas_disponiveis]
 
     df = pd.read_parquet(
