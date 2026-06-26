@@ -80,6 +80,8 @@ colunas_metricas = [
     if col.startswith("QT_")
 ]
 
+
+
 colunas_agrupamento = [
     "Modalidade",
     "Categoria Administrativa",
